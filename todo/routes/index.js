@@ -65,12 +65,6 @@ exports.create = function (req, res, next) {
 
 exports.delete = function (req, res, next) {
     Todo.findById(req.params.id, function (err, todo) {
-        var userId = utils.getUserId(req);
-
-        if (todo.user_id !== userId) {
-            res.sendStatus(403);
-        }
-
         todo.remove(function (err) {
             if (err) return next(err);
 
